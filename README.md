@@ -1,78 +1,71 @@
 <a href="https://opensource.newrelic.com/oss-category/#new-relic-experimental"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github.com/newrelic/opensource-website/raw/main/src/images/categories/dark/Experimental.png"><source media="(prefers-color-scheme: light)" srcset="https://github.com/newrelic/opensource-website/raw/main/src/images/categories/Experimental.png"><img alt="New Relic Open Source experimental project banner." src="https://github.com/newrelic/opensource-website/raw/main/src/images/categories/Experimental.png"></picture></a>
 
 
-![GitHub forks](https://img.shields.io/github/forks/newrelic-experimental/java-instrumentation-template?style=social)
-![GitHub stars](https://img.shields.io/github/stars/newrelic-experimental/java-instrumentation-template?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/newrelic-experimental/java-instrumentation-template?style=social)
+![GitHub forks](https://img.shields.io/github/forks/newrelic-experimental/newrelic-java-spring-web-ignores?style=social)
+![GitHub stars](https://img.shields.io/github/stars/newrelic-experimental/newrelic-java-spring-web-ignores?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/newrelic-experimental/newrelic-java-spring-web-ignores?style=social)
 
-![GitHub all releases](https://img.shields.io/github/downloads/newrelic-experimental/java-instrumentation-template/total)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/newrelic-experimental/java-instrumentation-template)
-![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/java-instrumentation-template)
-![GitHub Release Date](https://img.shields.io/github/release-date/newrelic-experimental/java-instrumentation-template)
-
-
-![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/java-instrumentation-template)
-![GitHub issues closed](https://img.shields.io/github/issues-closed/newrelic-experimental/java-instrumentation-template)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/java-instrumentation-template)
-![GitHub pull requests closed](https://img.shields.io/github/issues-pr-closed/newrelic-experimental/java-instrumentation-template)
+![GitHub all releases](https://img.shields.io/github/downloads/newrelic-experimental/newrelic-java-spring-web-ignores/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/newrelic-experimental/newrelic-java-spring-web-ignores)
+![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/newrelic-java-spring-web-ignores)
+![GitHub Release Date](https://img.shields.io/github/release-date/newrelic-experimental/newrelic-java-spring-web-ignores)
 
 
-# [Project Name - use format "newrelic-java-<name>"] [build badges go here when available]
+![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/newrelic-java-spring-web-ignores)
+![GitHub issues closed](https://img.shields.io/github/issues-closed/newrelic-experimental/newrelic-java-spring-web-ignores)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/newrelic-java-spring-web-ignores)
+![GitHub pull requests closed](https://img.shields.io/github/issues-pr-closed/newrelic-experimental/newrelic-java-spring-web-ignores)
 
->[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
 
-## Value
+# New Relic Java Instrumentation for Spring Web
 
-|Metrics | Events | Logs | Traces | Visualization | Automation |
-|:-:|:-:|:-:|:-:|:-:|:-:|
-|:x:|:x:|:x:|:white_check_mark:|:x:|:x:|
-
-### List of Metrics,Events,Logs,Traces
-|Name | Type | Description |
-|:-:|:-:|:-:|
-|*metric.name* | Metric| *description*|
-|*event.name* | Event|  *description*|
-|*log.name* | Log|  *description*|
-|*trace.name*| Trace| *description*
-|---|---|---|
-
+Provides instrumentation to ignore selected URIs based upon the actual URI or a regular expression in a Spring Web application.
 
 ## Installation
 
-> [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
+To use this instrumentation.
+1. Download the latest release.
+2. In the New Relic Java Agent directory (directory containing newrelic.jar), create a directory named extensions if it doe not already exist.
+3. Copy the jars into the extensions directory.
+4. Restart the application.
 
-## Getting Started
+## Configuration
+To configure Spring-Web-Ignores
+1. Edit newrelic.yml
+2. The best place the configuration is towards the end of the file and just before # Application Environments 
+3. The configuration starts with **Spring-Ignores:** and it must be indented two spaces. 
+4. If you would like to ignore specific URI (exact matches) then enter them as a comma separated list.  Start the line with four spaces and **urls:**
+5. If you want to ignore URIs based upon a Java regular expression then enter the patterns as a comma separated list and start the line with four spaces and **regex:**
+6. Save newrelic.yml.  Changes will take place in a minute or so.
 
->[Simple steps to start working with the software similar to a "Hello World"]
+Note that the configuration is dynamic and if you edit the settings the changes will take effect within a minute or so.
 
-## Usage
+Example:
 
->[**Optional** - Include more thorough instructions on how to use the software. This section might not be needed if the Getting Started section is enough. Remove this section if it's not needed.]
+&nbsp;&nbsp;Spring-Ignores:   
+&nbsp;&nbsp;&nbsp;&nbsp;urls: /hello   
+&nbsp;&nbsp;&nbsp;&nbsp;regex: /help/.*,/about/.*   
+  
+In the above example, the URI /hello will be ignored (but not /hello/Tom) and any URI that starts with /help/ or /about/   
 
 ## Building
 
->[**Optional** - Include this section if users will need to follow specific instructions to build the software from source. Be sure to include any third party build dependencies that need to be installed separately. Remove this section if it's not needed.]
-
-## Testing
-
->[**Optional** - Include instructions on how to run tests if we include tests with the codebase. Remove this section if it's not needed.]
+If you make changes to the instrumentation code and need to build the instrumentation jars, follow these steps
+1. Set environment variable NEW_RELIC_EXTENSIONS_DIR.  Its value should be the directory where you want to build the jars (i.e. the extensions directory of the Java Agent).
+2. Build one or all of the jars.   
+   a. To build one jar, run the command:  gradlew _moduleName_:clean  _moduleName_:install    
+   b. To build all jars, run the command: gradlew clean install
+3. Restart the application
 
 ## Support
 
 New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR DEDICATED SUPPORT. Issues and contributions should be reported to the project here on GitHub.
 
->[Choose 1 of the 2 options below for Support details, and remove the other one.]
-
->[Option 1 - no specific thread in Community]
 >We encourage you to bring your experiences and questions to the [Explorers Hub](https://discuss.newrelic.com) where our community members collaborate on solutions and new ideas.
-
->[Option 2 - thread in Community]
->New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub.
->You can find this project's topic/threads here: [URL for Community thread]
 
 ## Contributing
 
-We encourage your contributions to improve [Project Name]! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project. If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company, please drop us an email at opensource@newrelic.com.
+We encourage your contributions to improve Salesforce Commerce Cloud for New Relic Browser! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project. If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company, please drop us an email at opensource@newrelic.com.
 
 **A note about vulnerabilities**
 
@@ -82,6 +75,6 @@ If you believe you have found a security vulnerability in this project or any of
 
 ## License
 
-[Project Name] is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+New Relic Java Instrumentation for Spring Web Ignores is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
->[If applicable: [Project Name] also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+>[If applicable: New Relic Java Instrumentation for CORBA also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
