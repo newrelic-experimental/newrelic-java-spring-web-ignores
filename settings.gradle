@@ -1,1 +1,3 @@
-rootProject.name = 'java-instrumentation-template'
+rootProject.name = 'spring-web-ignores'
+include 'spring-web-ignores'
+include 'spring-web-ignores-6.0.0'
