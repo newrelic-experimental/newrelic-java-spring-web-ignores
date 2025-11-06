@@ -19,7 +19,7 @@
 
 # New Relic Java Instrumentation for Spring Web
 
-Provides instrumentation to ignore selected URIs based upon the actual URI or a regular expression.
+Provides instrumentation to ignore selected URIs based upon the actual URI or a regular expression in a Spring Web application.
 
 ## Installation
 
