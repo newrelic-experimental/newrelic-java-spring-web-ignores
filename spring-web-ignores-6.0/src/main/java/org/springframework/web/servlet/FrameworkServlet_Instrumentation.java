@@ -4,10 +4,9 @@ import com.newrelic.api.agent.NewRelic;
 import com.newrelic.api.agent.weaver.MatchType;
 import com.newrelic.api.agent.weaver.Weave;
 import com.newrelic.api.agent.weaver.Weaver;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import com.newrelic.instrumentation.labs.spring.web.Utils;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Weave(originalName = "org.springframework.web.servlet.FrameworkServlet", type = MatchType.BaseClass)
 public class FrameworkServlet_Instrumentation {
