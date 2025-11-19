@@ -3,14 +3,15 @@
 
 apply plugin: 'java'
 
+targetCompatibility = JavaVersion.VERSION_17
+
 dependencies {
     implementation 'org.springframework:spring-webmvc:6.0.0'
     implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
    // New Relic Java Agent dependencies
-   implementation 'com.newrelic.agent.java:newrelic-agent:6.4.0'
-   implementation 'com.newrelic.agent.java:newrelic-api:6.4.0'
-   implementation fileTree(include: ['*.jar'], dir: '../libs')
+   implementation 'com.newrelic.agent.java:newrelic-agent:8.4.0'
+   implementation 'com.newrelic.agent.java:newrelic-api:8.4.0'
    implementation fileTree(include: ['*.jar'], dir: '../test-lib')
 }
 
@@ -28,7 +29,4 @@ verifyInstrumentation {
         implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     }
     excludeRegex('.*rc[0-9]')
-  // Example:
-  // passes 'javax.servlet:servlet-api:[2.2,2.5]'
-  // exclude 'javax.servlet:servlet-api:2.4.public_draft'
 }
