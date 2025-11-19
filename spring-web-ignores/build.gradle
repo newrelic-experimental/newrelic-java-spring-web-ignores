@@ -23,7 +23,10 @@ jar {
 }
 
 verifyInstrumentation {
-    passesOnly 'org.springframework:spring-webmvc:[1.2.5,6.0.0]'
+    passes("org.springframework:spring-webmvc:[3.2.0,6.0.0)") {
+        implementation('javax.servlet:javax.servlet-api:3.1.0')
+    }
+    excludeRegex('.*rc[0-9]')
   // Verifier plugin documentation:
   // https://github.com/newrelic/newrelic-gradle-verify-instrumentation
   // Example:
