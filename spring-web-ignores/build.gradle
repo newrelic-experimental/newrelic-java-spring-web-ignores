@@ -27,9 +27,4 @@ verifyInstrumentation {
         implementation('javax.servlet:javax.servlet-api:3.1.0')
     }
     excludeRegex('.*rc[0-9]')
-  // Verifier plugin documentation:
-  // https://github.com/newrelic/newrelic-gradle-verify-instrumentation
-  // Example:
-  // passes 'javax.servlet:servlet-api:[2.2,2.5]'
-  // exclude 'javax.servlet:servlet-api:2.4.public_draft'
 }
